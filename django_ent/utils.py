@@ -7,7 +7,6 @@ from cas import CASClient, CASClientV2
 logger = logging.getLogger(__name__)
 
 ENT_INACTIVE_USER_REDIRECT = getattr(settings, "ENT_INACTIVE_USER_REDIRECT", "/")
-ENT_ESIDOC_BASE_URL = getattr(settings, "ENT_ESIDOC_BASE_URL", "{}")
 ENT_HDF_BASE_URL = getattr(settings, "ENT_HDF_BASE_URL", "")
 ENT_OCCITANIE_BASE_URL = getattr(settings, "ENT_OCCITANIE_BASE_URL", "")
 ENT_OCCITANIEAGR_BASE_URL = getattr(settings, "ENT_OCCITANIEAGR_BASE_URL", "")
@@ -17,7 +16,6 @@ ENT_C3RB_BASE_URL = getattr(settings, "ENT_C3RB_BASE_URL", "")
 ENT_QUERY_STRING_TRIGGER = getattr(settings, "ENT_QUERY_STRING_TRIGGER", "sso_id")
 
 BASE_URLS = {
-    "ESIDOC": ENT_ESIDOC_BASE_URL,
     "OCCITANIE": ENT_OCCITANIE_BASE_URL,
     "OCCITANIEAGR": ENT_OCCITANIEAGR_BASE_URL,
     "CORRELYCE": ENT_CORRELYCE_BASE_URL,

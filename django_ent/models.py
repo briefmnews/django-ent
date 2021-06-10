@@ -8,7 +8,6 @@ User = get_user_model()
 class ENTInstitution(models.Model):
 
     ENVIRONNEMENTS_NUMERIQUES_DE_TRAVAIL = [
-        ("ESIDOC", "Esidoc"),
         ("HDF", "Hauts-de-France"),
         ("OCCITANIE", "Occitanie"),
         ("OCCITANIEAGR", "Occitanie lycée agricole"),

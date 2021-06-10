@@ -20,7 +20,7 @@ class TestCASMiddleware:
         assert cas_middleware.get_response == "dump_response"
 
     def test_no_uai_no_ticket(self, request_builder):
-        """Testing the middleware if not a connection to esidoc"""
+        """Testing the middleware if not a connection to ent"""
         # GIVEN
         cas_middleware = CASMiddleware(request_builder.get)
 

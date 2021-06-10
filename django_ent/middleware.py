@@ -104,9 +104,7 @@ class CASMiddleware:
             auth_success_element = tree.find("cas:authenticationSuccess", ns)
             ent = request.session.get("ent", "")
 
-            if ent == "ESIDOC":
-                uai_element = "cas:ENTStructureUAI"
-            elif ent in ["OCCITANIE", "OCCITANIEAGR"]:
+            if ent in ["OCCITANIE", "OCCITANIEAGR"]:
                 uai_element = "cas:rneCourant"
             elif ent == "CORRELYCE":
                 auth_success_element = auth_success_element.find("cas:attributes", ns)
