@@ -113,7 +113,6 @@ class TestCASMiddleware:
             ("EXPDATA2MIDIPY", "OCCITANIE"),
             ("031MONITORING", "OCCITANIEAGR"),
             ("VAUCLUSE", "GMINVENT"),
-            ("3000", "C3RB"),
         ],
     )
     def test_validate_ticket(
