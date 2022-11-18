@@ -11,7 +11,7 @@ setup(
     packages=["django_ent", "django_ent.migrations"],
     python_requires=">=3.7",
     install_requires=[
-        "Django>=2.2",
+        "Django>=3.0",
         "python-cas>=1.4.0",
         "lxml>=4.6",
         "requests>=2.19.1",
@@ -19,7 +19,8 @@ setup(
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Django",
-        "Framework :: Django :: 2.2",
+        "Framework :: Django :: 3",
+        "Framework :: Django :: 4",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
