@@ -3,12 +3,11 @@ import logging
 from django.http import HttpResponseRedirect
 
 from django.conf import settings
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 
 from xml.etree import ElementTree
 from xml.etree.ElementTree import ParseError
 
-from .backends import CASBackend
 from .utils import get_cas_client
 from .models import ENTInstitution
 
@@ -44,7 +43,7 @@ class CASMiddleware:
         if cas_ticket and request.session.get("is_ent"):
             uai_numbers = self.validate_ticket(request, cas_ticket)
 
-            user = CASBackend.authenticate(request, uai_numbers=uai_numbers)
+            user = authenticate(request, uai_numbers=uai_numbers)
             if user:
                 login(request, user, backend="django_ent.backends.CASBackend")
                 request.session["ent_user"] = True
