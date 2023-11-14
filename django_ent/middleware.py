@@ -43,7 +43,7 @@ class CASMiddleware:
         if cas_ticket and request.session.get("is_ent"):
             uai_numbers = self.validate_ticket(request, cas_ticket)
 
-            user = authenticate(request, uai_numbers=uai_numbers)
+            user = authenticate(request, ent_uai_numbers=uai_numbers)
             logger.info(uai_numbers)
             logger.info(request)
             logger.info(user)
