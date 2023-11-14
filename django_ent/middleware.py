@@ -44,6 +44,9 @@ class CASMiddleware:
             uai_numbers = self.validate_ticket(request, cas_ticket)
 
             user = authenticate(request, uai_numbers=uai_numbers)
+            logger.info(uai_numbers)
+            logger.info(request)
+            logger.info(user)
             if user:
                 login(request, user, backend="django_ent.backends.CASBackend")
                 request.session["ent_user"] = True
