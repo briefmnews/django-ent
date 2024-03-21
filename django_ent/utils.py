@@ -54,8 +54,8 @@ def get_cas_client(request):
 
     server_url = BASE_URLS.get(ent, ENT_HDF_BASE_URL).format(uai_number)
 
-    next_page = request.get_full_path()
-    service_url = get_redirect_url(request, next_page)
+    # next_page = request.get_full_path()
+    service_url = get_redirect_url(request)
 
     if ent == "CORRELYCE":
         client = CASClientCorrelyce(server_url=server_url, service_url=service_url)
