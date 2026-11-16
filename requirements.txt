@@ -1,7 +1,7 @@
 black==25.1.0
-Django==4.2.24
+Django==5.2.19
 lxml==4.9.4
 python-cas==1.6.0
-requests==2.29.0
-django-formtools>=2.0
-beautifulsoup4>=4.6
+requests==2.34.2
+django-formtools==2.5.1
+beautifulsoup4==4.9.3
