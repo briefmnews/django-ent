@@ -1,5 +1,6 @@
 .python-version
 .idea
+.cursor
 *.pyc
 .pytest_cache
 django_ent.egg-info
