@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/briefmnews/django-ent/branch/main/graph/badge.svg?token=YQD145ET80)](https://codecov.io/gh/briefmnews/django-ent)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)  
 Handle CAS login via sso for french ENT (Etablissements Numériques de Travail) like 
-ENT Hauts-de-France (HDF) or Occitanie (OCCITANIE) or Occitanie lycée agricole (OCCITANIEAGR).
+ENT Hauts-de-France (HDF), Corrélyce (CORRELYCE) or GMInvent (GMINVENT).
 
 ## Installation
 Install with [pip](https://pip.pypa.io/en/stable/):
@@ -56,8 +56,6 @@ python manage.py migrate
 Here is the list of all the mandatory settings:
 ```python
 ENT_HDF_BASE_URL
-ENT_OCCITANIE_BASE_URL
-ENT_OCCITANIEAGR_BASE_URL
 ENT_QUERY_STRING_TRIGGER
 ```
 
