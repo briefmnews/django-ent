@@ -8,15 +8,10 @@ logger = logging.getLogger(__name__)
 
 ENT_INACTIVE_USER_REDIRECT = getattr(settings, "ENT_INACTIVE_USER_REDIRECT", "/")
 ENT_HDF_BASE_URL = getattr(settings, "ENT_HDF_BASE_URL", "")
-ENT_OCCITANIE_BASE_URL = getattr(settings, "ENT_OCCITANIE_BASE_URL", "")
-ENT_OCCITANIEAGR_BASE_URL = getattr(settings, "ENT_OCCITANIEAGR_BASE_URL", "")
 ENT_CORRELYCE_BASE_URL = getattr(settings, "ENT_CORRELYCE_BASE_URL", "")
 ENT_GMINVENT_BASE_URL = getattr(settings, "ENT_GMINVENT_BASE_URL", "")
-ENT_QUERY_STRING_TRIGGER = getattr(settings, "ENT_QUERY_STRING_TRIGGER", "sso_id")
 
 BASE_URLS = {
-    "OCCITANIE": ENT_OCCITANIE_BASE_URL,
-    "OCCITANIEAGR": ENT_OCCITANIEAGR_BASE_URL,
     "CORRELYCE": ENT_CORRELYCE_BASE_URL,
     "HDF": ENT_HDF_BASE_URL,
     "GMINVENT": ENT_GMINVENT_BASE_URL,
@@ -28,11 +23,7 @@ def get_redirect_url(request, path=None):
 
     scheme = request.scheme
     host = request.get_host()
-    if request.session.get("ent") in ["OCCITANIE", "OCCITANIEAGR"]:
-        url = "{}://{}/?{}={}".format(
-            scheme, host, ENT_QUERY_STRING_TRIGGER, request.session.get("ent").lower()
-        )
-    elif request.session.get("ent") == "CORRELYCE":
+    if request.session.get("ent") == "CORRELYCE":
         url = "{}://{}/?uai={}&pf=atrium-paca".format(
             scheme, host, request.session.get("uai_number").upper()
         )

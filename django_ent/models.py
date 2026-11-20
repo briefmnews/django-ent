@@ -9,8 +9,6 @@ class ENTInstitution(models.Model):
 
     ENVIRONNEMENTS_NUMERIQUES_DE_TRAVAIL = [
         ("HDF", "Hauts-de-France"),
-        ("OCCITANIE", "Occitanie"),
-        ("OCCITANIEAGR", "Occitanie lycée agricole"),
         ("CORRELYCE", "Corrélyce"),
         ("GMINVENT", "GMInvent"),
     ]

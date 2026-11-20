@@ -59,17 +59,13 @@ class CASMiddleware:
         elif uai_number:
             uai_number = uai_number.upper()
 
-            if uai_number in ["OCCITANIE", "OCCITANIEAGR"]:
-                request.session["uai_number"] = None
-                request.session["ent"] = uai_number
-            else:
-                try:
-                    ent = ENTInstitution.objects.get(uai=uai_number).ent
-                except ENTInstitution.DoesNotExist:
-                    return HttpResponseRedirect(ENT_INACTIVE_USER_REDIRECT)
+            try:
+                ent = ENTInstitution.objects.get(uai=uai_number).ent
+            except ENTInstitution.DoesNotExist:
+                return HttpResponseRedirect(ENT_INACTIVE_USER_REDIRECT)
 
-                request.session["uai_number"] = uai_number
-                request.session["ent"] = ent
+            request.session["uai_number"] = uai_number
+            request.session["ent"] = ent
 
             request.session["is_ent"] = True
 
@@ -106,9 +102,7 @@ class CASMiddleware:
             auth_success_element = tree.find("cas:authenticationSuccess", ns)
             ent = request.session.get("ent", "")
 
-            if ent in ["OCCITANIE", "OCCITANIEAGR"]:
-                uai_element = "cas:rneCourant"
-            elif ent == "CORRELYCE":
+            if ent == "CORRELYCE":
                 auth_success_element = auth_success_element.find("cas:attributes", ns)
                 uai_element = "cas:ENTPersonStructRattachUAI"
             elif ent == "HDF":

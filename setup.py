@@ -5,7 +5,7 @@ from django_ent import __version__
 setup(
     name="django-ent",
     version=__version__,
-    description="Handle login and ticket validation for french ent (HDF, Occitanie, ...)",
+    description="Handle login and ticket validation for french ent (HDF, Corrélyce, ...)",
     url="https://github.com/briefmnews/django-ent",
     author="Brief.me",
     author_email="tech@brief.me",
