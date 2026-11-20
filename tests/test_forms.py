@@ -6,7 +6,7 @@ pytestmark = pytest.mark.django_db
 
 
 class TestInstitutionForm:
-    @pytest.mark.parametrize("ent", ["OCCITANIE", "HDF"])
+    @pytest.mark.parametrize("ent", ["HDF", "CORRELYCE", "GMINVENT"])
     def test_form_works_properly(self, ent, form_data):
         # GIVEN
         form_data = form_data(ent=ent).data
@@ -16,6 +16,19 @@ class TestInstitutionForm:
 
         # THEN
         assert form.is_valid()
+
+    @pytest.mark.parametrize("ent", ["OCCITANIE", "OCCITANIEAGR"])
+    def test_form_rejects_removed_ent(self, ent, form_data):
+        # GIVEN
+        form_data = form_data(ent=ent).data
+        form = InstitutionForm(data=form_data)
+
+        # WHEN
+        is_valid = form.is_valid()
+
+        # THEN
+        assert not is_valid
+        assert "ent" in form.errors
 
     def test_institution_name_transformation(self):
 

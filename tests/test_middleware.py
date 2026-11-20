@@ -91,27 +91,25 @@ class TestCASMiddleware:
         assert response.status_code == 302
         assert mock_validate_invalid_ticket.call_count == 1
 
-    def test_institution_does_not_exist(self, request_builder):
+    @pytest.mark.parametrize("uai_number", ["fake-uai", "OCCITANIE", "OCCITANIEAGR"])
+    def test_institution_does_not_exist(self, request_builder, uai_number):
         """Testing the __call_ method with an unknown institution"""
         # GIVEN
-        uai_number = "fake-uai"
         query_params = "/?{}={}".format(ENT_QUERY_STRING_TRIGGER, uai_number)
         request = request_builder.get(query_params)
-        request.session["uai_number"] = uai_number
-        cas_middleware = CASMiddleware(request)
+        cas_middleware = CASMiddleware(request_builder.get)
 
         # WHEN
-        cas_middleware(request)
+        response = cas_middleware(request)
 
         # THEN
-        assert cas_middleware.get_response.path == "/"
+        assert response.status_code == 302
+        assert response.url == "/"
 
     @pytest.mark.parametrize(
         "uai_number, ent",
         [
             ("9999999Q", "HDF"),
-            ("EXPDATA2MIDIPY", "OCCITANIE"),
-            ("031MONITORING", "OCCITANIEAGR"),
             ("VAUCLUSE", "GMINVENT"),
         ],
     )
@@ -131,13 +129,7 @@ class TestCASMiddleware:
         assert uai_number in uai_numbers
         mock_verification_response.assert_called_once()
 
-    @pytest.mark.parametrize(
-        "uai_number, ent",
-        [("9999999Q", "HDF"), ("EXPDATA2MIDIPY", "OCCITANIE")],
-    )
-    def test_validate_ticket_parse_error(
-        self, uai_number, ent, mocker, request_builder
-    ):
+    def test_validate_ticket_parse_error(self, mocker, request_builder):
         # GIVEN
         mocker.patch(
             "cas.CASClientV2.get_verification_response",
@@ -155,9 +147,8 @@ class TestCASMiddleware:
            </catalog>""",
         )
         request = request_builder.get()
-        uai_number = "invalid-uai"
-        request.session["uai_number"] = uai_number
-        request.session["ent"] = ent
+        request.session["uai_number"] = "invalid-uai"
+        request.session["ent"] = "HDF"
 
         # WHEN
         response = CASMiddleware.validate_ticket(request, "dummy-ticket")

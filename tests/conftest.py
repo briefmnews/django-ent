@@ -57,11 +57,7 @@ class RequestBuilder(object):
 
 @pytest.fixture
 def mock_verification_response(mocker, ent):
-    if ent == "OCCITANIE":
-        file = "tests/fixtures/valid_ticket_occitanie.xml"
-    elif ent == "OCCITANIEAGR":
-        file = "tests/fixtures/valid_ticket_occitanie_agr.xml"
-    elif ent == "HDF":
+    if ent == "HDF":
         file = "tests/fixtures/valid_ticket_hdf_with_multiple_institutions.xml"
     elif ent == "GMINVENT":
         file = "tests/fixtures/valid_ticket_gminvent.xml"
